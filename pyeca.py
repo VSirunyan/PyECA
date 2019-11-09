@@ -3,6 +3,26 @@
 import numpy as np
 import random
 
+def print_eca_help():
+    print('#---------------------------------------------------------#')
+    print('#                                                         #')
+    print('# Simple implementation of elementary cellular automata   #')
+    print('# Usage:                                                  #')
+    print('#     ./pyeca.py [options]                                #')
+    print('# Options:                                                #')
+    print('# -w -- width of output image in pixels, default is 240   #')
+    print('# -h -- height of output image in pixels, default is 320  #')
+    print('# -r -- rule, default is 0                                #')
+    print('# -o -- name of output image, default is eca              #')
+    print('#                                                         #')
+    print('# It also could be imported in other script and used      #')
+    print('# as function:                                            #')
+    print('# import pyeca                                            #')
+    print('# ...                                                     #')
+    print('# myvar = eca(width, height, rule)                        #')
+    print('#                                                         #')
+    print('#---------------------------------------------------------#')
+
 def eca(width, height, rule):
     gen = np.zeros((height, width), dtype=np.uint8)
     gen[0]=np.random.randint(0,2,width)
@@ -27,6 +47,9 @@ if __name__=='__main__':
     i=0
 
     while i < len(sys.argv):
+        if sys.argv[i] == "-h" or sys.argv[i] == "--help":
+            print_eca_help()
+            exit(0)
         if sys.argv[i] == "-w":
             if i+1 >= len(sys.argv) or not(sys.argv[i+1].isnumeric()) or int(sys.argv[i+1]) < 3 or int(sys.argv[i+1]) > 3000:
                 raise Exception("width value should be a natural value between 3 and 3000")
