@@ -23,7 +23,9 @@ def print_eca_help():
     print('#                                                         #')
     print('#---------------------------------------------------------#')
 
-def eca(width, height, rule):
+
+def eca(width, height, rule, seed=0):
+    np.random.seed(0)
     gen = np.zeros((height, width), dtype=np.uint8)
     gen[0]=np.random.randint(0,2,width)
 
